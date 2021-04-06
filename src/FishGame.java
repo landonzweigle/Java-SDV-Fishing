@@ -1,12 +1,9 @@
 
-/* By Landon Zweigle, Parker Segelhorst, and Zach Giuliano
- * Java Final Project; recreation of Stardew Valley's Fishing MiniGame See: https://www.youtube.com/watch?v=wFF-eBrzusM
- * Cast a line into the water by left clicking. when you hear a sound left click. Attempt to keep the bar behind the fish in order to raise the orange bar on the left all the way.
- * 	When it raises, you capture the fish. Game Mode traditional makes it so if you lose three fish you lose the game. freemode you play for forever.
- */
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -174,7 +171,7 @@ public class FishGame extends Application {
 		fish.setImg(new Image("resources/fish.png", 300, 75, true, false));
 		
 			// Set base Capture area information
-		CA.setPos(862, 560);
+		CA.setPos(862, -100);
 		CA.setHeight((int) CA.getImg().getHeight());
 		CA.setWidth((int) CA.getImg().getWidth());
 		CA.setMaxH(687);
@@ -194,12 +191,15 @@ public class FishGame extends Application {
 	// for what the user wants to do, if they would rather begin the game, or rather
 	// look at instructions.
 	public static void main(String[] args) {
-		String fileName = "resources/record.txt";
-		
+//		String fileName = new FishGame().getClass ( ).getResource ( "resources/record.txt" ).getPath ( );
+//		print(fileName);
 		//String line = null;
-		
+		String fileName = "record.txt";
 		try {
-
+			
+//			FileInputStream f = new FileInputStream ( fileName );
+			//File f = new File(fileName);
+			
 			FileReader fr = new FileReader(fileName);
 			BufferedReader br = new BufferedReader(fr);
 			recordFish = Integer.valueOf(br.readLine ( ));
@@ -486,9 +486,7 @@ public class FishGame extends Application {
 					if (fish.collidingWith(CA)) 
 					{
 						myPoints += CAPRATEUP;
-					} 
-					else 
-					{
+					} else {
 						myPoints -= CAPRATEDOWN;
 					}
 					
@@ -566,22 +564,18 @@ public class FishGame extends Application {
 	}
 	
 	public static boolean saveGame() {
-		String file = "resources/record.txt";
+		String file = "record.txt";
 		boolean success = false;
 		try {
-			FileWriter fw = new FileWriter(file);
-			BufferedWriter bw = new BufferedWriter(fw);
-			
-			PrintWriter pw = new PrintWriter(file);
-			pw.print ("");
-			pw.close ( );
-			
-			bw.write ("" + recordFish );
-			bw.close ( );
+			PrintWriter  fw = new PrintWriter(file);
+
+			fw.write ("" + recordFish );
+			fw.close ( );
 			success = true;
 			
 		}catch(IOException ex) {
 			print("Something went wrong saving the record amount of fish.");
+			ex.printStackTrace ( );
 			success = false;
 		}
 		return success;

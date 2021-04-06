@@ -1,3 +1,5 @@
+
+
 //Parker Segelhorst
 //For the fish game
 //Class contains all all the information for the fish.
@@ -25,7 +27,7 @@ public class Fish
 	public int getDiff( int index )
 	{
 
-		return dif[index];
+		return 0;//dif[index];
 	}
 
 	public String getIMG( int index )

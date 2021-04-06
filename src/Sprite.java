@@ -1,6 +1,4 @@
-//By Landon Zweigle
-//For Fishing miniGame
-//holds a sprite's x and y position, and its y velocity. Also determines if two sprite's are intersecting on the screen.
+
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -32,7 +30,7 @@ public class Sprite
 	
 	public Sprite()
 	{		
-		this.x =0;
+		this.x = 0;
 		this.y = 0;
 		this.maxH = 0;
 		this.minH = 0;
