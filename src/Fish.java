@@ -31,7 +31,7 @@ public class Fish
 	public String getIMG( int index )
 	{
 
-		return imgs[index];
+		return ("resources/" + imgs[index]);
 	}
 
 }

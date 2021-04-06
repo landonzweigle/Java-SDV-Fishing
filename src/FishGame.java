@@ -82,9 +82,9 @@ public class FishGame extends Application {
 		// Height of the capture area.
 	public static int CA_HEIGHT = 150;
 		// The idle background
-	public final Image IDLE = new Image("Ocean.png", 1280, 720, true, false);
+	public static Image IDLE;
 		// The minigame framework.
-	public final Image MINIGAME = new Image("Capture Area.png", 1280, 720, true, false);
+	public static Image MINIGAME;
 		// the randomly generated number for the fish.
 	public static int fishNum;
 		// Time required to wait to catch the fish.
@@ -92,15 +92,15 @@ public class FishGame extends Application {
 		// All the fish.
 	public static Fish ourFish = new Fish();
 		// array of images that makes the animation for the player casting a line.
-	public static Image[] castAnim = new Image[] { new Image("Casting0.png"), new Image("Casting1.png"), new Image("Casting2.png"), new Image("Casting3.png"), new Image("Casting4.png") };
+	public static Image[] castAnim;
 		//2D array of the positions for the fish when he is pulled out of the water.
 	public static int [][]bobberPos = new int[][] {{576,371},{526,226},{269,166},{146,240}};
 		// Image display for winning a fish.
-	public final Image FISHWON = new Image("Capture Screen.png", 1280, 720, true, false);
+	public static Image FISHWON;
 		// Image display for losing a fish.
-	public final Image FISHLOSE = new Image("You Lost the Fish0.png", 1280, 720, true, false);
+	public static Image FISHLOSE;
 		// Time between frames for the animation.
-	public final Image GAMEOVER=new Image("Game Over0.png",1280,720,true,false);
+	public static Image GAMEOVER;
 		//This is the image for when you lose the game.
 	public static double frameRate = 175;
 		// the next time (in milliseconds) that the next frame will play.
@@ -146,7 +146,7 @@ public class FishGame extends Application {
 		// The fish
 	public static Sprite fish = new Sprite();
 		// The bar
-	public static Image bar = new Image("bar.png",64,0,false,false);
+	public static Image bar;
 		// players current points (to capture fish).
 	public static double myPoints = 50;
 		// from 1 and up (recommended to be less than 10) Difficulty of fish.
@@ -162,8 +162,16 @@ public class FishGame extends Application {
 	//Returns: none.
 	public static void startGame() {
 			//Set the images.
-		CA.setImg(new Image("CA.png", 129, CA_HEIGHT, false, false));
-		fish.setImg(new Image("fish.png", 300, 75, true, false));
+		FISHLOSE = new Image("resources/You Lost the Fish0.png", 1280, 720, true, false);
+		FISHWON = new Image("resources/Capture Screen.png", 1280, 720, true, false);
+		GAMEOVER=new Image("resources/Game Over0.png",1280,720,true,false);
+		bar = new Image("resources/bar.png",64,0,false,false);
+		castAnim = new Image[] { new Image("resources/Casting0.png"), new Image("resources/Casting1.png"), new Image("resources/Casting2.png"), new Image("resources/Casting3.png"), new Image("resources/Casting4.png") };
+		MINIGAME = new Image("resources/Capture Area.png", 1280, 720, true, false);
+		IDLE = new Image("resources/Ocean.png", 1280, 720, true, false);
+		
+		CA.setImg(new Image("resources/CA.png", 129, CA_HEIGHT, false, false));
+		fish.setImg(new Image("resources/fish.png", 300, 75, true, false));
 		
 			// Set base Capture area information
 		CA.setPos(862, 560);
@@ -270,9 +278,9 @@ public class FishGame extends Application {
 		 */
 		//set the bobber down sound.
 		
-		URL location = getClass().getResource("FishBobberDown.wav");
+		URL location = getClass().getResource("resources/FishBobberDown.wav");
 		AudioClip bobberDown = new AudioClip(location.toString());
-		URL locationBK = getClass ( ).getResource ( "Ocean Sounds.wav" );
+		URL locationBK = getClass ( ).getResource ( "resources/Ocean Sounds.wav" );
 			//Credit for audio goes to: https://www.youtube.com/watch?v=xyA5c-ajXyg
 			//I edited the audio and made it loopable.
 		AudioClip atmosphericSound = new AudioClip(locationBK.toString ( ));
